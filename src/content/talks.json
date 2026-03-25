@@ -1,8 +1,110 @@
 [
   {
-    "title": "Placeholder — run scripts/fetch_speakerdeck.py to populate",
-    "url": "https://speakerdeck.com/yoshiori",
-    "date": "2025-01-01T00:00:00Z",
+    "title": "なぜThrottleではなくDebounceだったのか？ 700並列リクエストと戦うサーバーサイド実装のすべて",
+    "url": "https://speakerdeck.com/yoshiori/nazethrottledehanakudebouncedatutanoka-700bing-lie-rikuesutotozhan-usabasaidoshi-zhuang-nosubete",
+    "date": "2025-11-14T00:00:00-05:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "クライアントサイドでよく使われる Debounce処理 をサーバサイドで3回実装した話",
+    "url": "https://speakerdeck.com/yoshiori/kuraiantosaidodeyokushi-wareru-debouncechu-li-wosabasaidode3hui-shi-zhuang-sitahua",
+    "date": "2024-10-27T00:00:00-04:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "ソートできるUUID v7をJavaで使うときの話",
+    "url": "https://speakerdeck.com/yoshiori/sotodekiruuuid-v7wojavadeshi-utokinohua",
+    "date": "2024-06-16T00:00:00-04:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "Go Down Rockin'",
+    "url": "https://speakerdeck.com/yoshiori/go-down-rockin",
+    "date": "2024-02-18T00:00:00-05:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "テストデータを貯めて感じたこと",
+    "url": "https://speakerdeck.com/yoshiori/toruby-2023",
+    "date": "2023-08-22T00:00:00-04:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "エンジニアリング  x  US 海外とのコラボレーション",
+    "url": "https://speakerdeck.com/yoshiori/enziniaringu-x-us-hai-wai-tofalsekoraboresiyon",
+    "date": "2021-02-13T00:00:00-05:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "未完成な技術と歩む道のりでの 試行錯誤",
+    "url": "https://speakerdeck.com/yoshiori/wei-wan-cheng-naji-shu-tobu-mudao-falseridefalse-shi-xing-cuo-wu",
+    "date": "2020-09-01T00:00:00-04:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "DevOps, Immutable Infrastructure, Microservices and Chaos Engineering",
+    "url": "https://speakerdeck.com/yoshiori/devops-immutable-infrastructure-microservices-and-chaos-engineering",
+    "date": "2019-03-22T00:00:00-04:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "Change the recipe's world",
+    "url": "https://speakerdeck.com/yoshiori/change-the-recipes-world",
+    "date": "2018-07-23T00:00:00-04:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "Cookpad awakens",
+    "url": "https://speakerdeck.com/yoshiori/cookpad-awakens",
+    "date": "2017-01-21T00:00:00-05:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "Failure teaches Success",
+    "url": "https://speakerdeck.com/yoshiori/failure-teaches-success",
+    "date": "2016-12-20T00:00:00-05:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "How we cook cookpad.com 2016",
+    "url": "https://speakerdeck.com/yoshiori/how-we-cook-cookpad-dot-com-2016",
+    "date": "2016-08-26T00:00:00-04:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "adultoruby",
+    "url": "https://speakerdeck.com/yoshiori/adultoruby",
+    "date": "2015-10-10T00:00:00-04:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "go in to microservices(wip)",
+    "url": "https://speakerdeck.com/yoshiori/go-in-to-microservices-wip",
+    "date": "2015-09-26T00:00:00-04:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "cookpad 2015 summer internship rails",
+    "url": "https://speakerdeck.com/yoshiori/cookpad-2015-summer-internship-rails",
+    "date": "2015-08-20T00:00:00-04:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "cookpad 2015 summer internship TDD",
+    "url": "https://speakerdeck.com/yoshiori/cookpad-2015-summer-internship-tdd",
+    "date": "2015-08-20T00:00:00-04:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "Happy video transcoding with ElasticTranscoder",
+    "url": "https://speakerdeck.com/yoshiori/happy-video-transcoding-with-elastictranscoder",
+    "date": "2014-10-31T00:00:00-04:00",
+    "thumbnail": ""
+  },
+  {
+    "title": "18 till i die",
+    "url": "https://speakerdeck.com/yoshiori/18-till-i-die",
+    "date": "2014-09-05T00:00:00-04:00",
     "thumbnail": ""
   }
 ]
