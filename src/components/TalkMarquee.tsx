@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface Talk {
   title: string;
@@ -14,18 +14,31 @@ function formatDate(date: string) {
   return d.toLocaleDateString("en-US", { year: "numeric", month: "short" });
 }
 
-function TalkItem({ talk }: { talk: Talk }) {
-  const [hovered, setHovered] = useState(false);
+const cardVariants = {
+  rest: { scale: 1, zIndex: 0 },
+  hover: { scale: 1.08, zIndex: 10 },
+};
 
+const overlayVariants = {
+  rest: { opacity: 0 },
+  hover: { opacity: 1 },
+};
+
+const textVariants = {
+  rest: { y: 10, opacity: 0 },
+  hover: { y: 0, opacity: 1 },
+};
+
+function TalkItem({ talk }: { talk: Talk }) {
   return (
     <motion.a
       href={talk.url}
       target="_blank"
       rel="noopener noreferrer"
       className="relative shrink-0 block w-[280px] overflow-hidden border border-border bg-surface no-underline"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      whileHover={{ scale: 1.08, zIndex: 10 }}
+      initial="rest"
+      whileHover="hover"
+      variants={cardVariants}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       <div className="relative">
@@ -43,31 +56,23 @@ function TalkItem({ talk }: { talk: Talk }) {
             </span>
           </div>
         )}
-        <AnimatePresence>
-          {hovered && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="absolute inset-0 flex flex-col justify-end p-3.5 bg-gradient-to-t from-black/90 via-black/50 to-transparent"
-            >
-              <motion.div
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 10, opacity: 0 }}
-                transition={{ duration: 0.2, delay: 0.05 }}
-              >
-                <div className="text-xs text-white leading-relaxed mb-1">
-                  {talk.title}
-                </div>
-                <div className="font-mono text-[10px] tracking-wider text-white/60">
-                  {formatDate(talk.date)}
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <motion.div
+          variants={overlayVariants}
+          transition={{ duration: 0.2 }}
+          className="absolute inset-0 flex flex-col justify-end p-3.5 bg-gradient-to-t from-black/90 via-black/50 to-transparent"
+        >
+          <motion.div
+            variants={textVariants}
+            transition={{ duration: 0.2, delay: 0.05 }}
+          >
+            <div className="text-xs text-white leading-relaxed mb-1">
+              {talk.title}
+            </div>
+            <div className="font-mono text-[10px] tracking-wider text-white/60">
+              {formatDate(talk.date)}
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </motion.a>
   );
@@ -114,16 +119,6 @@ export default function TalkMarquee({ talks }: { talks: Talk[] }) {
 
   return (
     <div className="flex flex-col gap-3 -mx-6">
-      <style>{`
-        @keyframes marquee-left {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-100% / 3)); }
-        }
-        @keyframes marquee-right {
-          0% { transform: translateX(calc(-100% / 3)); }
-          100% { transform: translateX(0); }
-        }
-      `}</style>
       <MarqueeRow talks={row1} direction="left" duration={50} />
       <MarqueeRow talks={row2} direction="right" duration={55} />
     </div>
