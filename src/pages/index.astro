@@ -34,7 +34,9 @@ const skills = ['Java', 'Ruby', 'Python', 'Rust', 'TypeScript', 'Ruby on Rails',
   <div class="mx-auto max-w-[860px] px-6">
 
     <!-- Hero -->
-    <header class="border-b border-border pb-20 pt-[100px]">
+    <header class="relative border-b border-border pb-20 pt-[100px] overflow-hidden">
+      <img src="/avatar.png" alt="" aria-hidden="true" class="pointer-events-none absolute right-[-5%] top-1/2 -translate-y-1/2 w-[min(400px,50vw)] opacity-[0.15] grayscale object-cover" />
+      <div class="relative">
       <div class="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-accent animate-[fadeUp_0.5s_ease_both]">
         {site.title} · {site.location}
         <span class="h-px flex-1 bg-accent opacity-30"></span>
@@ -51,6 +53,7 @@ const skills = ['Java', 'Ruby', 'Python', 'Rust', 'TypeScript', 'Ruby on Rails',
         ))}
         <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={`mailto:${site.email}`}>Email</a>
       </nav>
+      </div>
     </header>
 
     <!-- Experience -->
