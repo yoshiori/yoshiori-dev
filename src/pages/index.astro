@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import site from '../content/site.json';
 import talks from '../content/talks.json';
 import awards from '../content/awards.json';
 import ExperienceItem from '../components/ExperienceItem.astro';
@@ -49,12 +50,6 @@ const experience = [
 ];
 
 const skills = ['Java', 'Ruby', 'Python', 'Spring Boot', 'Ruby on Rails', 'AWS', 'Docker', 'Kubernetes', 'Bazel', 'CI/CD'];
-const links = [
-  { label: 'GitHub',       href: 'https://github.com/yoshiori' },
-  { label: 'Speaker Deck', href: 'https://speakerdeck.com/yoshiori' },
-  { label: 'Blog',         href: 'https://yoshiori.hatenablog.com' },
-  { label: 'LinkedIn',     href: 'https://linkedin.com/in/yoshiori' },
-];
 ---
 
 <!doctype html>
@@ -62,12 +57,12 @@ const links = [
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yoshiori Shoji</title>
-  <meta name="description" content="Engineering Director, developer community leader, and open-source contributor based in Tokyo." />
-  <meta property="og:title" content="Yoshiori Shoji" />
-  <meta property="og:description" content="Engineering Director, developer community leader, and open-source contributor based in Tokyo." />
-  <meta property="og:image" content="https://yoshiori.dev/og-image.png" />
-  <meta property="og:url" content="https://yoshiori.dev" />
+  <title>{site.name}</title>
+  <meta name="description" content={site.shortDescription} />
+  <meta property="og:title" content={site.name} />
+  <meta property="og:description" content={site.shortDescription} />
+  <meta property="og:image" content={`${site.siteUrl}/og-image.png`} />
+  <meta property="og:url" content={site.siteUrl} />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -80,21 +75,20 @@ const links = [
     <!-- Hero -->
     <header class="border-b border-border pb-20 pt-[100px]">
       <div class="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-accent animate-[fadeUp_0.5s_ease_both]">
-        Engineering Director · Tokyo, Japan
+        {site.title} · {site.location}
         <span class="h-px flex-1 bg-accent opacity-30"></span>
       </div>
       <h1 class="font-display text-[clamp(72px,12vw,130px)] leading-[0.9] tracking-[0.02em] text-text mb-8 animate-[fadeUp_0.5s_0.1s_ease_both]">
-        YOSHIORI<br /><span class="text-accent">SHOJI</span>
+        {site.firstName}<br /><span class="text-accent">{site.lastName}</span>
       </h1>
       <p class="max-w-[520px] text-sm text-soft mb-10 animate-[fadeUp_0.5s_0.2s_ease_both]">
-        Software engineer with 20+ years of experience. Building and leading global engineering teams.
-        Recognized voice in Japan's developer community — speaker, author, organizer.
+        {site.description}
       </p>
       <nav class="flex flex-wrap gap-2 animate-[fadeUp_0.5s_0.3s_ease_both]">
-        {links.map(l => (
+        {site.links.map(l => (
           <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={l.href} target="_blank" rel="noopener">{l.label}</a>
         ))}
-        <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href="mailto:yoshiori@gmail.com">Email</a>
+        <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={`mailto:${site.email}`}>Email</a>
       </nav>
     </header>
 
@@ -142,8 +136,8 @@ const links = [
     </section>
 
     <footer class="flex flex-col items-center gap-2 py-12 text-center sm:flex-row sm:justify-between sm:text-left">
-      <span class="font-mono text-[11px] text-muted">© Yoshiori Shoji</span>
-      <a class="font-mono text-[11px] text-muted no-underline transition-colors duration-200 hover:text-accent" href="mailto:yoshiori@gmail.com">yoshiori@gmail.com</a>
+      <span class="font-mono text-[11px] text-muted">© {site.name}</span>
+      <a class="font-mono text-[11px] text-muted no-underline transition-colors duration-200 hover:text-accent" href={`mailto:${site.email}`}>{site.email}</a>
     </footer>
 
   </div>

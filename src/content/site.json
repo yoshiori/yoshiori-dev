@@ -1,0 +1,21 @@
+{
+  "name": "Yoshiori Shoji",
+  "firstName": "YOSHIORI",
+  "lastName": "SHOJI",
+  "title": "Engineering Director",
+  "location": "Tokyo, Japan",
+  "siteUrl": "https://yoshiori.dev",
+  "email": "yoshiori@gmail.com",
+  "description": "Software engineer with 20+ years of experience. Building and leading global engineering teams. Recognized voice in Japan's developer community — speaker, author, organizer.",
+  "shortDescription": "Engineering Director, developer community leader, and open-source contributor based in Tokyo.",
+  "ogDescription": [
+    "Software engineer with 20+ years of experience.",
+    "Speaker, author, and community organizer."
+  ],
+  "links": [
+    { "label": "GitHub",       "href": "https://github.com/yoshiori" },
+    { "label": "Speaker Deck", "href": "https://speakerdeck.com/yoshiori" },
+    { "label": "Blog",         "href": "https://yoshiori.hatenablog.com" },
+    { "label": "LinkedIn",     "href": "https://linkedin.com/in/yoshiori" }
+  ]
+}

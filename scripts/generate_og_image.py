@@ -4,10 +4,13 @@ Generate OG image (1200x630) for yoshiori.dev.
 Run locally:  python scripts/generate_og_image.py
 Requires:     pip install Pillow
 """
+import json
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).parent.parent
+SITE_JSON = ROOT / "src" / "content" / "site.json"
 PROFILE_PATH = ROOT / "src" / "assets" / "profile.jpg"
 OUT_PATH = ROOT / "public" / "og-image.png"
 
@@ -26,6 +29,8 @@ FONT_MONO = "/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf"
 
 
 def generate():
+    site = json.loads(SITE_JSON.read_text())
+
     img = Image.new("RGB", (W, H), BG)
     draw = ImageDraw.Draw(img)
 
@@ -49,18 +54,22 @@ def generate():
     draw.rectangle([80, 80, 500, 83], fill=ACCENT)
 
     # Label
-    draw.text((80, 96), "ENGINEERING DIRECTOR · TOKYO", fill=ACCENT, font=font_small)
+    label = f"{site['title'].upper()} · {site['location'].split(',')[0].upper()}"
+    draw.text((80, 96), label, fill=ACCENT, font=font_small)
 
     # Name
-    draw.text((80, 160), "YOSHIORI", fill=TEXT_COLOR, font=font_large)
-    draw.text((80, 245), "SHOJI", fill=ACCENT, font=font_large)
+    draw.text((80, 160), site["firstName"], fill=TEXT_COLOR, font=font_large)
+    draw.text((80, 245), site["lastName"], fill=ACCENT, font=font_large)
 
     # Description
-    draw.text((80, 370), "Software engineer with 20+ years of experience.", fill=MUTED, font=font_medium)
-    draw.text((80, 410), "Speaker, author, and community organizer.", fill=MUTED, font=font_medium)
+    y = 370
+    for line in site["ogDescription"]:
+        draw.text((80, y), line, fill=MUTED, font=font_medium)
+        y += 40
 
-    # URL
-    draw.text((80, 520), "yoshiori.dev", fill=MUTED, font=font_small)
+    # URL (extract domain from siteUrl)
+    domain = urlparse(site["siteUrl"]).hostname
+    draw.text((80, 520), domain, fill=MUTED, font=font_small)
 
     # Save
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
