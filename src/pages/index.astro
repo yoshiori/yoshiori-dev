@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import talks from '../content/talks.json';
+import awards from '../content/awards.json';
 import ExperienceItem from '../components/ExperienceItem.astro';
 import TalkCard from '../components/TalkCard.astro';
 import SectionHeader from '../components/SectionHeader.astro';
@@ -79,7 +80,7 @@ const links = [
       <h1 class="font-display text-[clamp(72px,12vw,130px)] leading-[0.9] tracking-wider text-text mb-8 animate-[fadeUp_0.5s_0.1s_ease_both]">
         YOSHIORI<br /><span class="text-accent">SHOJI</span>
       </h1>
-      <p class="max-w-[520px] text-sm text-[#999] mb-10 animate-[fadeUp_0.5s_0.2s_ease_both]">
+      <p class="max-w-[520px] text-sm text-soft mb-10 animate-[fadeUp_0.5s_0.2s_ease_both]">
         Software engineer with 20+ years of experience. Building and leading global engineering teams.
         Recognized voice in Japan's developer community — speaker, author, organizer.
       </p>
@@ -106,7 +107,7 @@ const links = [
       <SectionHeader num="02" title="Skills" />
       <div class="flex flex-wrap gap-2">
         {skills.map(s => (
-          <span class="font-mono text-xs text-muted border border-border px-3 py-1 tracking-wider transition-all duration-200 hover:text-text hover:border-[#444]">{s}</span>
+          <span class="font-mono text-xs text-muted border border-border px-3 py-1 tracking-wider transition-all duration-200 hover:text-text hover:border-border-hover">{s}</span>
         ))}
       </div>
     </section>
@@ -125,15 +126,10 @@ const links = [
     <section class="border-b border-border py-[72px]" id="recognition">
       <SectionHeader num="04" title="Recognition" />
       <div class="flex flex-col">
-        {[
-          { year: '2025', text: 'InfoWorld AI Impact Awards — CloudBees Smart Tests' },
-          { year: '2014', text: 'Developers Summit Best Speaker Award — 1st Place' },
-          { year: '2010', text: 'Developers Summit Best Speaker Award — 2nd Place' },
-          { year: '—',    text: 'java-ja organizer · manager-readme (376★) · 26+ conference talks' },
-        ].map((award, i) => (
+        {awards.map((award, i) => (
           <div class:list={["flex items-baseline gap-5 py-4", i > 0 && "border-t border-border"]}>
             <span class="font-mono text-[11px] text-accent min-w-[48px]">{award.year}</span>
-            <span class="text-[13px] text-[#aaa]">{award.text}</span>
+            <span class="text-[13px] text-dim">{award.text}</span>
           </div>
         ))}
       </div>

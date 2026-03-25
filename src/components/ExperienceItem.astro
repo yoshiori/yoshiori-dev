@@ -18,7 +18,7 @@ const { title, company, period, bullets } = Astro.props;
     <div class="text-[15px] font-medium text-text mb-3">{title}</div>
     <ul class="list-none p-0">
       {bullets.map(b => (
-        <li class="relative pl-4 py-0.5 text-[13px] text-[#888] before:content-['—'] before:absolute before:left-0 before:text-border">{b}</li>
+        <li class="relative pl-4 py-0.5 text-[13px] text-subtle before:content-['—'] before:absolute before:left-0 before:text-border">{b}</li>
       ))}
     </ul>
   </div>
