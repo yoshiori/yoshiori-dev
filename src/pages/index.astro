@@ -1,0 +1,515 @@
+---
+import talks from '../content/talks.json';
+
+const experience = [
+  {
+    title: 'Engineering Director',
+    company: 'CloudBees Inc.',
+    period: 'Jul 2024 – Present',
+    bullets: [
+      'Leading global engineering teams across India, Sri Lanka, Australia, and more',
+      'Spearheaded CloudBees Smart Tests — InfoWorld AI Impact Awards winner',
+      'Achieved 80% reduction in test execution time through product strategy',
+    ],
+  },
+  {
+    title: 'Principal Software Engineer',
+    company: 'Launchable Inc.',
+    period: 'May 2020 – Aug 2024',
+    bullets: [
+      'Joined Silicon Valley startup from 0→1 stage',
+      'Core team member of "CloudBees Smart Tests" following acquisition',
+      'Daily collaboration with global teams across 5+ countries in English',
+    ],
+  },
+  {
+    title: 'Head of CTO Office / Head of Tech Department',
+    company: 'Cookpad Japan',
+    period: 'Jun 2016 – May 2020',
+    bullets: [
+      'Led tech department and designed company-wide hackathon "Hackarade"',
+      'Drove org-wide workplace reforms — removed core hours, redesigned contracts',
+      'Established hiring standards: "never lower team average"',
+    ],
+  },
+  {
+    title: 'Software Engineer',
+    company: 'Cookpad Japan',
+    period: 'Nov 2012 – Jun 2016',
+    bullets: [
+      'Recipe posting platform development',
+      'Led microservices migration',
+    ],
+  },
+];
+
+const skills = ['Java', 'Ruby', 'Python', 'Spring Boot', 'Ruby on Rails', 'AWS', 'Docker', 'Kubernetes', 'Bazel', 'CI/CD'];
+const links = [
+  { label: 'GitHub',       href: 'https://github.com/yoshiori' },
+  { label: 'Speaker Deck', href: 'https://speakerdeck.com/yoshiori' },
+  { label: 'Blog',         href: 'https://yoshiori.hatenablog.com' },
+  { label: 'LinkedIn',     href: 'https://linkedin.com/in/yoshiori' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yoshiori Shoji</title>
+  <meta name="description" content="Engineering Director, developer community leader, and open-source contributor based in Tokyo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #222222;
+      --muted: #555555;
+      --text: #e8e8e8;
+      --accent: #e8ff00;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans JP', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+      scroll-behavior: smooth;
+    }
+
+    ::selection { background: var(--accent); color: #000; }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Noise overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 100px 0 80px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.3;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 12vw, 130px);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      max-width: 520px;
+      color: #999;
+      font-size: 14px;
+      margin-bottom: 40px;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      transition: all 0.2s;
+    }
+    .hero-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(232,255,0,0.04);
+    }
+
+    /* ── Section ── */
+    section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .section-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 0.05em;
+      color: var(--text);
+    }
+
+    /* ── Experience ── */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+    }
+    .exp-item:first-child { border-top: none; }
+
+    .exp-meta {
+      padding-top: 2px;
+    }
+
+    .exp-period {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .exp-company {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .exp-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      padding: 0;
+    }
+    .exp-bullets li {
+      font-size: 13px;
+      color: #888;
+      padding: 3px 0 3px 16px;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--border);
+    }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    .skill-tag:hover {
+      color: var(--text);
+      border-color: #444;
+    }
+
+    /* ── Talks grid ── */
+    .talks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .talk-card {
+      display: block;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .talk-card:hover {
+      border-color: #444;
+      transform: translateY(-2px);
+    }
+
+    .talk-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      background: #1a1a1a;
+    }
+
+    .talk-thumb-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .talk-thumb-placeholder span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--border);
+      letter-spacing: 0.1em;
+    }
+
+    .talk-body {
+      padding: 14px;
+    }
+
+    .talk-title {
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .talk-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Awards ── */
+    .award-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .award-item {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+    }
+    .award-item:first-child { border-top: none; }
+    .award-year {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      min-width: 48px;
+    }
+    .award-text {
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 48px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .footer-mail {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-mail:hover { color: var(--accent); }
+
+    /* ── Animate in ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-label { animation: fadeUp 0.5s ease both; }
+    .hero h1    { animation: fadeUp 0.5s 0.1s ease both; }
+    .hero-desc  { animation: fadeUp 0.5s 0.2s ease both; }
+    .hero-links { animation: fadeUp 0.5s 0.3s ease both; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .exp-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .exp-meta { display: flex; gap: 12px; align-items: baseline; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-label">Engineering Director · Tokyo, Japan</div>
+      <h1>YOSHIORI<br /><span>SHOJI</span></h1>
+      <p class="hero-desc">
+        Software engineer with 20+ years of experience. Building and leading global engineering teams.
+        Recognized voice in Japan's developer community — speaker, author, organizer.
+      </p>
+      <nav class="hero-links">
+        {links.map(l => <a href={l.href} target="_blank" rel="noopener">{l.label}</a>)}
+        <a href="mailto:yoshiori@gmail.com">Email</a>
+      </nav>
+    </header>
+
+    <!-- Experience -->
+    <section id="experience">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Experience</h2>
+      </div>
+      <div>
+        {experience.map(exp => (
+          <div class="exp-item">
+            <div class="exp-meta">
+              <div class="exp-period">{exp.period}</div>
+              <div class="exp-company">{exp.company}</div>
+            </div>
+            <div>
+              <div class="exp-title">{exp.title}</div>
+              <ul class="exp-bullets">
+                {exp.bullets.map(b => <li>{b}</li>)}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Skills</h2>
+      </div>
+      <div class="skills-grid">
+        {skills.map(s => <span class="skill-tag">{s}</span>)}
+      </div>
+    </section>
+
+    <!-- Talks -->
+    <section id="talks">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Talks</h2>
+      </div>
+      <div class="talks-grid">
+        {talks.map(talk => (
+          <a class="talk-card" href={talk.url} target="_blank" rel="noopener">
+            {talk.thumbnail
+              ? <img class="talk-thumb" src={talk.thumbnail} alt={talk.title} loading="lazy" />
+              : <div class="talk-thumb-placeholder"><span>SPEAKERDECK</span></div>
+            }
+            <div class="talk-body">
+              <div class="talk-title">{talk.title}</div>
+              <div class="talk-date">
+                {new Date(talk.date).getFullYear
+                  ? new Date(talk.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
+                  : talk.date}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Recognition -->
+    <section id="recognition">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Recognition</h2>
+      </div>
+      <div class="award-list">
+        <div class="award-item">
+          <span class="award-year">2025</span>
+          <span class="award-text">InfoWorld AI Impact Awards — CloudBees Smart Tests</span>
+        </div>
+        <div class="award-item">
+          <span class="award-year">2014</span>
+          <span class="award-text">Developers Summit Best Speaker Award — 1st Place</span>
+        </div>
+        <div class="award-item">
+          <span class="award-year">2010</span>
+          <span class="award-text">Developers Summit Best Speaker Award — 2nd Place</span>
+        </div>
+        <div class="award-item">
+          <span class="award-year">—</span>
+          <span class="award-text">java-ja organizer · manager-readme (376★) · 26+ conference talks</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span class="footer-name">© Yoshiori Shoji</span>
+      <a class="footer-mail" href="mailto:yoshiori@gmail.com">yoshiori@gmail.com</a>
+    </footer>
+
+  </div>
+</body>
+</html>

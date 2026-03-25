@@ -1,0 +1,32 @@
+name: Fetch SpeakerDeck Talks
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'   # Every Sunday at 00:00 UTC
+  workflow_dispatch:       # Allow manual trigger
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch talks from SpeakerDeck RSS
+        run: python scripts/fetch_speakerdeck.py
+
+      - name: Commit updated talks.json
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add src/content/talks.json
+          git diff --staged --quiet || (
+            git commit -m "chore: update speakerdeck talks [skip ci]" &&
+            git push
+          )
