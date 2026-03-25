@@ -4,6 +4,7 @@ import site from '../content/site.json';
 import talks from '../content/talks.json';
 import awards from '../content/awards.json';
 import publications from '../content/publications.json';
+import media from '../content/media.json';
 import experience from '../content/experience.json';
 import ExperienceItem from '../components/ExperienceItem.astro';
 import TalkCard from '../components/TalkCard.astro';
@@ -98,9 +99,25 @@ const skills = ['Java', 'Ruby', 'Python', 'Spring Boot', 'Ruby on Rails', 'AWS',
       </div>
     </section>
 
+    <!-- Media -->
+    <section class="border-b border-border py-[72px]" id="media">
+      <SectionHeader num="05" title="Media" />
+      <div class="flex flex-col">
+        {media.map((item, i) => (
+          <a href={item.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
+            <span class="font-mono text-[11px] text-accent min-w-[48px]">{item.year}</span>
+            <span class="flex flex-col gap-0.5">
+              <span class="text-[13px] text-text">{item.title}</span>
+              <span class="text-[11px] text-muted">{item.publisher}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
     <!-- Recognition -->
     <section class="border-b border-border py-[72px]" id="recognition">
-      <SectionHeader num="05" title="Recognition" />
+      <SectionHeader num="06" title="Recognition" />
       <div class="flex flex-col">
         {awards.map((award, i) => (
           <div class:list={["flex items-baseline gap-5 py-4", i > 0 && "border-t border-border"]}>
