@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@v4
@@ -21,12 +22,19 @@ jobs:
       - name: Fetch talks from SpeakerDeck RSS
         run: python scripts/fetch_speakerdeck.py
 
-      - name: Commit updated talks.json
+      - name: Create PR if talks changed
         run: |
+          git diff --quiet src/content/talks.json && exit 0
+          BRANCH="chore/update-speakerdeck-$(date +%Y%m%d)"
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
+          git checkout -b "$BRANCH"
           git add src/content/talks.json
-          git diff --staged --quiet || (
-            git commit -m "chore: update speakerdeck talks [skip ci]" &&
-            git push
-          )
+          git commit -m "chore: update SpeakerDeck talks"
+          git push -u origin "$BRANCH"
+          gh pr create \
+            --title "chore: update SpeakerDeck talks" \
+            --body "Automated update from SpeakerDeck RSS feed." \
+            --base main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
