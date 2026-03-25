@@ -7,7 +7,6 @@ Or via GitHub Actions on a schedule.
 import urllib.request
 import xml.etree.ElementTree as ET
 import json
-import re
 from pathlib import Path
 from email.utils import parsedate_to_datetime
 
@@ -27,19 +26,17 @@ def fetch_talks() -> list[dict]:
         title = item.findtext("title", "").strip()
         link  = item.findtext("link",  "").strip()
         date  = item.findtext("pubDate", "").strip()
-        desc  = item.findtext("description", "")
-
         # Normalise date to ISO 8601
         try:
             iso_date = parsedate_to_datetime(date).isoformat()
         except Exception:
             iso_date = date
 
-        # Extract first <img src="..."> from HTML description
+        # Extract thumbnail from media:content element
         thumbnail = ""
-        m = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', desc)
-        if m:
-            thumbnail = m.group(1)
+        media = item.find("{http://search.yahoo.com/mrss/}content")
+        if media is not None:
+            thumbnail = media.get("url", "")
 
         if title and link:
             talks.append({
