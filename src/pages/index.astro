@@ -3,6 +3,7 @@ import '../styles/global.css';
 import site from '../content/site.json';
 import talks from '../content/talks.json';
 import awards from '../content/awards.json';
+import publications from '../content/publications.json';
 import ExperienceItem from '../components/ExperienceItem.astro';
 import TalkCard from '../components/TalkCard.astro';
 import SectionHeader from '../components/SectionHeader.astro';
@@ -221,9 +222,25 @@ const skills = ['Java', 'Ruby', 'Python', 'Spring Boot', 'Ruby on Rails', 'AWS',
       </div>
     </section>
 
+    <!-- Publications -->
+    <section class="border-b border-border py-[72px]" id="publications">
+      <SectionHeader num="04" title="Publications" />
+      <div class="flex flex-col">
+        {publications.map((pub, i) => (
+          <a href={pub.url} target="_blank" rel="noopener" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
+            <span class="font-mono text-[11px] text-accent min-w-[48px]">{pub.year}</span>
+            <span class="flex flex-col gap-0.5">
+              <span class="text-[13px] text-text">{pub.title}</span>
+              <span class="text-[11px] text-muted">{pub.publisher} · {pub.role}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
     <!-- Recognition -->
     <section class="border-b border-border py-[72px]" id="recognition">
-      <SectionHeader num="04" title="Recognition" />
+      <SectionHeader num="05" title="Recognition" />
       <div class="flex flex-col">
         {awards.map((award, i) => (
           <div class:list={["flex items-baseline gap-5 py-4", i > 0 && "border-t border-border"]}>

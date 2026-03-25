@@ -1,0 +1,44 @@
+[
+  {
+    "title": "WEB+DB PRESS 総集編 [Vol.1〜136]",
+    "role": "Essay",
+    "publisher": "Gijutsu-Hyoron Co., Ltd.",
+    "year": 2024,
+    "url": "https://gihyo.jp/book/2024/978-4-297-14156-1"
+  },
+  {
+    "title": "エラスティックリーダーシップ ―自己組織化チームの育て方",
+    "role": "Essay",
+    "publisher": "O'Reilly Japan",
+    "year": 2017,
+    "url": "https://www.oreilly.co.jp/books/9784873118024/"
+  },
+  {
+    "title": "100人のプロが選んだソフトウェア開発の名著 君のために選んだ1冊",
+    "role": "Essay",
+    "publisher": "Shoeisha",
+    "year": 2012,
+    "url": "https://www.seshop.com/product/detail/14084"
+  },
+  {
+    "title": "WEB+DB PRESS Vol.52 特集「新人さんに贈る Javaプログラミングの習慣」",
+    "role": "Feature Article",
+    "publisher": "Gijutsu-Hyoron Co., Ltd.",
+    "year": 2009,
+    "url": "https://gihyo.jp/magazine/wdpress/archive/2009/vol52"
+  },
+  {
+    "title": "Java Expert #03 PythonをJavaで使う〜Jython開発 基礎の基礎",
+    "role": "Essay",
+    "publisher": "Gijutsu-Hyoron Co., Ltd.",
+    "year": 2008,
+    "url": "https://gihyo.jp/book/2008/978-4-7741-3677-6"
+  },
+  {
+    "title": "Java Expert #02 お勧めコミュニティjava-ja",
+    "role": "Essay",
+    "publisher": "Gijutsu-Hyoron Co., Ltd.",
+    "year": 2007,
+    "url": "https://gihyo.jp/book/2007/978-4-7741-3255-6"
+  }
+]
