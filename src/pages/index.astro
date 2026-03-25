@@ -34,25 +34,27 @@ const skills = ['Java', 'Ruby', 'Python', 'Rust', 'TypeScript', 'Ruby on Rails',
   <div class="mx-auto max-w-[860px] px-6">
 
     <!-- Hero -->
-    <header class="relative border-b border-border pb-20 pt-[100px] overflow-hidden">
-      <img src="/avatar.png" alt="" aria-hidden="true" class="pointer-events-none absolute right-[-5%] top-1/2 -translate-y-1/2 w-[min(400px,50vw)] opacity-[0.15] grayscale object-cover" />
-      <div class="relative">
+    <header class="border-b border-border pb-20 pt-[100px]">
       <div class="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-accent animate-[fadeUp_0.5s_ease_both]">
         {site.title} · {site.location}
         <span class="h-px flex-1 bg-accent opacity-30"></span>
       </div>
-      <h1 class="font-display text-[clamp(72px,12vw,130px)] leading-[0.9] tracking-[0.02em] text-text mb-8 animate-[fadeUp_0.5s_0.1s_ease_both]">
-        {site.firstName}<br /><span class="text-accent">{site.lastName}</span>
-      </h1>
-      <p class="max-w-[520px] text-sm text-soft mb-10 animate-[fadeUp_0.5s_0.2s_ease_both]">
-        {site.description}
-      </p>
-      <nav class="flex flex-wrap gap-2 animate-[fadeUp_0.5s_0.3s_ease_both]">
-        {site.links.map(l => (
-          <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
-        ))}
-        <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={`mailto:${site.email}`}>Email</a>
-      </nav>
+      <div class="relative overflow-hidden">
+        <img src="/avatar.png" alt="" aria-hidden="true" class="pointer-events-none absolute right-[-5%] inset-y-0 h-full opacity-[0.15] grayscale object-cover" />
+        <div class="relative">
+          <h1 class="font-display text-[clamp(72px,12vw,130px)] leading-[0.9] tracking-[0.02em] text-text mb-8 animate-[fadeUp_0.5s_0.1s_ease_both]">
+            {site.firstName}<br /><span class="text-accent">{site.lastName}</span>
+          </h1>
+          <p class="max-w-[520px] text-sm text-soft mb-10 animate-[fadeUp_0.5s_0.2s_ease_both]">
+            {site.description}
+          </p>
+          <nav class="flex flex-wrap gap-2 animate-[fadeUp_0.5s_0.3s_ease_both]">
+            {site.links.map(l => (
+              <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
+            ))}
+            <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={`mailto:${site.email}`}>Email</a>
+          </nav>
+        </div>
       </div>
     </header>
 
