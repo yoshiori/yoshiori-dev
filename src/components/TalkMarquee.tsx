@@ -82,17 +82,21 @@ function MarqueeRow({
   direction: "left" | "right";
   duration: number;
 }) {
+  const [paused, setPaused] = useState(false);
   // Triplicate for seamless looping
   const items = [...talks, ...talks, ...talks];
 
   return (
     <div
-      className="group overflow-hidden"
+      className="overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
       <div
         className="flex gap-3 w-max"
         style={{
           animation: `marquee-${direction} ${duration}s linear infinite`,
+          animationPlayState: paused ? "paused" : "running",
         }}
       >
         {items.map((talk, i) => (
@@ -118,9 +122,6 @@ export default function TalkMarquee({ talks }: { talks: Talk[] }) {
         @keyframes marquee-right {
           0% { transform: translateX(calc(-100% / 3)); }
           100% { transform: translateX(0); }
-        }
-        .group:hover > div {
-          animation-play-state: paused;
         }
       `}</style>
       <MarqueeRow talks={row1} direction="left" duration={50} />
