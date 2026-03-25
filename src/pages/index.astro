@@ -61,8 +61,8 @@ const skills = ['Java', 'Ruby', 'Python', 'Spring Boot', 'Ruby on Rails', 'AWS',
   <meta name="description" content={site.shortDescription} />
   <meta property="og:title" content={site.name} />
   <meta property="og:description" content={site.shortDescription} />
-  <meta property="og:image" content={`${site.siteUrl}/og-image.png`} />
-  <meta property="og:url" content={site.siteUrl} />
+  <meta property="og:image" content={new URL("/og-image.png", Astro.url.origin).href} />
+  <meta property="og:url" content={Astro.url.href} />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
