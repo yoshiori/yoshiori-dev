@@ -9,42 +9,141 @@ import SectionHeader from '../components/SectionHeader.astro';
 
 const experience = [
   {
-    title: 'Engineering Director',
     company: 'CloudBees Inc.',
     period: 'Jul 2024 – Present',
-    bullets: [
-      'Leading global engineering teams across India, Sri Lanka, Australia, and more',
-      'Spearheaded CloudBees Smart Tests — InfoWorld AI Impact Awards winner',
-      'Achieved 80% reduction in test execution time through product strategy',
+    roles: [
+      {
+        title: 'Engineering Director',
+        bullets: [
+          'Leading global engineering teams across India, Sri Lanka, Australia, and more',
+          'Spearheaded CloudBees Smart Tests — InfoWorld AI Impact Awards winner',
+          'Achieved 80% reduction in test execution time through product strategy',
+        ],
+      },
     ],
   },
   {
-    title: 'Principal Software Engineer',
     company: 'Launchable Inc.',
     period: 'May 2020 – Aug 2024',
-    bullets: [
-      'Joined Silicon Valley startup from 0→1 stage',
-      'Core team member of "CloudBees Smart Tests" following acquisition',
-      'Daily collaboration with global teams across 5+ countries in English',
+    roles: [
+      {
+        title: 'Principal Software Engineer',
+        bullets: [
+          'Joined Silicon Valley startup from 0→1 stage',
+          'Core team member of "CloudBees Smart Tests" following acquisition',
+          'Daily collaboration with global teams across 5+ countries in English',
+        ],
+      },
     ],
   },
   {
-    title: 'Head of CTO Office / Head of Tech Department',
     company: 'Cookpad Japan',
-    period: 'Jun 2016 – May 2020',
-    bullets: [
-      'Led tech department and designed company-wide hackathon "Hackarade"',
-      'Drove org-wide workplace reforms — removed core hours, redesigned contracts',
-      'Established hiring standards: "never lower team average"',
+    period: 'Nov 2012 – May 2020',
+    roles: [
+      {
+        title: 'Head of CTO Office',
+        bullets: [
+          'Drove cross-cutting initiatives for all engineers — hackathons, workplace reforms, and development culture',
+        ],
+      },
+      {
+        title: 'Head of Tech Department / Engineering General Manager',
+        bullets: [
+          'Managed the shared platform engineering division serving all product teams',
+        ],
+      },
+      {
+        title: 'Head of HR',
+        bullets: [
+          'Led all HR functions including recruiting, performance reviews, and compensation',
+          'Established hiring standards: "never lower team average"',
+        ],
+      },
+      {
+        title: 'Head of Recipe Posting',
+        bullets: [
+          'Managed the recipe posting service development team as department head',
+        ],
+      },
+      {
+        title: 'Software Engineer',
+        bullets: [
+          'Recipe posting platform development and led microservices migration',
+          'Built company-wide video streaming infrastructure',
+        ],
+      },
     ],
   },
   {
-    title: 'Software Engineer',
-    company: 'Cookpad Japan',
-    period: 'Nov 2012 – Jun 2016',
-    bullets: [
-      'Recipe posting platform development',
-      'Led microservices migration',
+    company: 'DWANGO Co., Ltd.',
+    period: 'Mar 2009 – Oct 2012',
+    roles: [
+      {
+        title: 'Engineer / System Leader',
+        bullets: [
+          'Built internal mobile revenue and expense aggregation system',
+          'Developed Niconico Seiga (e-book platform)',
+        ],
+      },
+    ],
+  },
+  {
+    company: 'Growth Xpartners Inc.',
+    period: 'Feb 2008 – Mar 2009',
+    roles: [
+      {
+        title: 'Software Engineer',
+        bullets: [
+          'Performance tuning for municipal regional services',
+          'Developed in-store visualization service',
+        ],
+      },
+    ],
+  },
+  {
+    company: 'BrainPad Inc.',
+    period: 'Feb 2006 – Feb 2008',
+    roles: [
+      {
+        title: 'Software Engineer',
+        bullets: [
+          'Developed recommendation engine product "Rtoaster"',
+        ],
+      },
+    ],
+  },
+  {
+    company: 'KBMJ, Inc.',
+    period: 'Dec 2003 – Jan 2006',
+    roles: [
+      {
+        title: 'Web Engineer',
+        bullets: [
+          'Built blog/RSS Japanese keyword tagging application',
+          'Developed job-hunting support site using Google Maps API and Ajax',
+          'Web application development for job listing platforms',
+        ],
+      },
+    ],
+  },
+  {
+    company: 'Zentech Technology Japan, Inc.',
+    period: 'Aug 2001 – Dec 2003',
+    roles: [
+      {
+        title: 'Software Engineer',
+        bullets: [
+          'DoCoMo mobile phone emulator development',
+          'Built disaster prevention information system prototype for Hokkaido government',
+        ],
+      },
+      {
+        title: 'QA Engineer',
+        bullets: [
+          'DoCoMo mobile phone quality assurance',
+          'Java VM quality assurance',
+        ],
+      },
     ],
   },
 ];
@@ -97,7 +196,7 @@ const skills = ['Java', 'Ruby', 'Python', 'Spring Boot', 'Ruby on Rails', 'AWS',
       <SectionHeader num="01" title="Experience" />
       <div>
         {experience.map(exp => (
-          <ExperienceItem title={exp.title} company={exp.company} period={exp.period} bullets={exp.bullets} />
+          <ExperienceItem company={exp.company} period={exp.period} roles={exp.roles} />
         ))}
       </div>
     </section>
