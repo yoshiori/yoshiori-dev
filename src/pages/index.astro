@@ -7,7 +7,7 @@ import publications from '../content/publications.json';
 import media from '../content/media.json';
 import experience from '../content/experience.json';
 import ExperienceItem from '../components/ExperienceItem.astro';
-import TalkCard from '../components/TalkCard.astro';
+import TalkMarquee from '../components/TalkMarquee.tsx';
 import SectionHeader from '../components/SectionHeader.astro';
 
 const skills = ['Java', 'Ruby', 'Python', 'Rust', 'TypeScript', 'Ruby on Rails', 'AI/ML', 'AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Engineering Management'];
@@ -76,11 +76,7 @@ const skills = ['Java', 'Ruby', 'Python', 'Rust', 'TypeScript', 'Ruby on Rails',
     <!-- Talks -->
     <section class="border-b border-border py-[72px]" id="talks">
       <SectionHeader num="03" title="Talks" />
-      <div class="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3">
-        {talks.map(talk => (
-          <TalkCard title={talk.title} url={talk.url} thumbnail={talk.thumbnail} date={talk.date} />
-        ))}
-      </div>
+      <TalkMarquee talks={talks} client:visible />
     </section>
 
     <!-- Publications -->
