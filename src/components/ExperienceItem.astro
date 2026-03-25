@@ -1,25 +1,35 @@
 ---
-interface Props {
+interface Role {
   title: string;
-  company: string;
-  period: string;
   bullets: string[];
 }
 
-const { title, company, period, bullets } = Astro.props;
+interface Props {
+  company: string;
+  period: string;
+  roles: Role[];
+}
+
+const { company, period, roles } = Astro.props;
 ---
 
-<div class="grid grid-cols-1 gap-2 border-t border-border py-7 first:border-t-0 sm:grid-cols-[180px_1fr] sm:gap-6">
-  <div class="flex items-baseline gap-3 pt-0.5 sm:block">
-    <div class="font-mono text-[11px] tracking-wider text-muted mb-1.5">{period}</div>
-    <div class="text-xs font-medium text-accent">{company}</div>
-  </div>
-  <div>
-    <div class="text-[15px] font-medium text-text mb-3">{title}</div>
-    <ul class="list-none p-0">
-      {bullets.map(b => (
-        <li class="relative pl-4 py-0.5 text-[13px] text-subtle before:content-['—'] before:absolute before:left-0 before:text-border">{b}</li>
+<div class="border-t border-border py-7 first:border-t-0">
+  <div class="grid grid-cols-1 gap-2 sm:grid-cols-[180px_1fr] sm:gap-6">
+    <div class="flex items-baseline gap-3 pt-0.5 sm:block">
+      <div class="font-mono text-[11px] tracking-wider text-muted mb-1.5">{period}</div>
+      <div class="text-xs font-medium text-accent">{company}</div>
+    </div>
+    <div class="flex flex-col gap-4">
+      {roles.map(role => (
+        <div>
+          <div class="text-[15px] font-medium text-text mb-2">{role.title}</div>
+          <ul class="list-none p-0">
+            {role.bullets.map(b => (
+              <li class="relative pl-4 py-0.5 text-[13px] text-subtle before:content-['—'] before:absolute before:left-0 before:text-border">{b}</li>
+            ))}
+          </ul>
+        </div>
       ))}
-    </ul>
+    </div>
   </div>
 </div>

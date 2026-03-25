@@ -3,51 +3,11 @@ import '../styles/global.css';
 import site from '../content/site.json';
 import talks from '../content/talks.json';
 import awards from '../content/awards.json';
+import publications from '../content/publications.json';
+import experience from '../content/experience.json';
 import ExperienceItem from '../components/ExperienceItem.astro';
 import TalkCard from '../components/TalkCard.astro';
 import SectionHeader from '../components/SectionHeader.astro';
-
-const experience = [
-  {
-    title: 'Engineering Director',
-    company: 'CloudBees Inc.',
-    period: 'Jul 2024 – Present',
-    bullets: [
-      'Leading global engineering teams across India, Sri Lanka, Australia, and more',
-      'Spearheaded CloudBees Smart Tests — InfoWorld AI Impact Awards winner',
-      'Achieved 80% reduction in test execution time through product strategy',
-    ],
-  },
-  {
-    title: 'Principal Software Engineer',
-    company: 'Launchable Inc.',
-    period: 'May 2020 – Aug 2024',
-    bullets: [
-      'Joined Silicon Valley startup from 0→1 stage',
-      'Core team member of "CloudBees Smart Tests" following acquisition',
-      'Daily collaboration with global teams across 5+ countries in English',
-    ],
-  },
-  {
-    title: 'Head of CTO Office / Head of Tech Department',
-    company: 'Cookpad Japan',
-    period: 'Jun 2016 – May 2020',
-    bullets: [
-      'Led tech department and designed company-wide hackathon "Hackarade"',
-      'Drove org-wide workplace reforms — removed core hours, redesigned contracts',
-      'Established hiring standards: "never lower team average"',
-    ],
-  },
-  {
-    title: 'Software Engineer',
-    company: 'Cookpad Japan',
-    period: 'Nov 2012 – Jun 2016',
-    bullets: [
-      'Recipe posting platform development',
-      'Led microservices migration',
-    ],
-  },
-];
 
 const skills = ['Java', 'Ruby', 'Python', 'Spring Boot', 'Ruby on Rails', 'AWS', 'Docker', 'Kubernetes', 'Bazel', 'CI/CD'];
 ---
@@ -86,7 +46,7 @@ const skills = ['Java', 'Ruby', 'Python', 'Spring Boot', 'Ruby on Rails', 'AWS',
       </p>
       <nav class="flex flex-wrap gap-2 animate-[fadeUp_0.5s_0.3s_ease_both]">
         {site.links.map(l => (
-          <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={l.href} target="_blank" rel="noopener">{l.label}</a>
+          <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
         ))}
         <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={`mailto:${site.email}`}>Email</a>
       </nav>
@@ -97,7 +57,7 @@ const skills = ['Java', 'Ruby', 'Python', 'Spring Boot', 'Ruby on Rails', 'AWS',
       <SectionHeader num="01" title="Experience" />
       <div>
         {experience.map(exp => (
-          <ExperienceItem title={exp.title} company={exp.company} period={exp.period} bullets={exp.bullets} />
+          <ExperienceItem company={exp.company} period={exp.period} roles={exp.roles} />
         ))}
       </div>
     </section>
@@ -122,9 +82,25 @@ const skills = ['Java', 'Ruby', 'Python', 'Spring Boot', 'Ruby on Rails', 'AWS',
       </div>
     </section>
 
+    <!-- Publications -->
+    <section class="border-b border-border py-[72px]" id="publications">
+      <SectionHeader num="04" title="Publications" />
+      <div class="flex flex-col">
+        {publications.map((pub, i) => (
+          <a href={pub.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
+            <span class="font-mono text-[11px] text-accent min-w-[48px]">{pub.year}</span>
+            <span class="flex flex-col gap-0.5">
+              <span class="text-[13px] text-text">{pub.title}</span>
+              <span class="text-[11px] text-muted">{pub.publisher} · {pub.role}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
     <!-- Recognition -->
     <section class="border-b border-border py-[72px]" id="recognition">
-      <SectionHeader num="04" title="Recognition" />
+      <SectionHeader num="05" title="Recognition" />
       <div class="flex flex-col">
         {awards.map((award, i) => (
           <div class:list={["flex items-baseline gap-5 py-4", i > 0 && "border-t border-border"]}>
