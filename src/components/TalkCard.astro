@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  url: string;
+  thumbnail?: string;
+  date: string;
+}
+
+const { title, url, thumbnail, date } = Astro.props;
+
+const d = new Date(date);
+const formattedDate = !isNaN(d.valueOf())
+  ? d.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
+  : date;
+---
+
+<a class="block no-underline border border-border bg-surface overflow-hidden transition-all duration-200 hover:border-border-hover hover:-translate-y-0.5" href={url} target="_blank" rel="noopener">
+  {thumbnail
+    ? <img class="w-full aspect-video object-cover block bg-thumb-bg" src={thumbnail} alt={title} loading="lazy" />
+    : <div class="w-full aspect-video bg-thumb-bg flex items-center justify-center">
+        <span class="font-mono text-[10px] tracking-widest text-border">SPEAKERDECK</span>
+      </div>
+  }
+  <div class="p-3.5">
+    <div class="text-xs text-text leading-relaxed mb-2">{title}</div>
+    <div class="font-mono text-[10px] tracking-wider text-muted">{formattedDate}</div>
+  </div>
+</a>
