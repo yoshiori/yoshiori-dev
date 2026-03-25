@@ -4,150 +4,10 @@ import site from '../content/site.json';
 import talks from '../content/talks.json';
 import awards from '../content/awards.json';
 import publications from '../content/publications.json';
+import experience from '../content/experience.json';
 import ExperienceItem from '../components/ExperienceItem.astro';
 import TalkCard from '../components/TalkCard.astro';
 import SectionHeader from '../components/SectionHeader.astro';
-
-const experience = [
-  {
-    company: 'CloudBees Inc.',
-    period: 'Jul 2024 – Present',
-    roles: [
-      {
-        title: 'Engineering Director',
-        bullets: [
-          'Leading global engineering teams across Japan, US, Canada, India, and Australia',
-          'Architecting and building AI-powered test optimization platform while leading global teams',
-          'InfoWorld AI Impact Awards winner — achieved 80% reduction in test execution time',
-        ],
-      },
-    ],
-  },
-  {
-    company: 'Launchable Inc.',
-    period: 'May 2020 – Aug 2024',
-    roles: [
-      {
-        title: 'Principal Software Engineer',
-        bullets: [
-          'Built AI/ML-driven test intelligence platform from 0→1 at Silicon Valley startup',
-          'Core architect of predictive test selection engine (now "CloudBees Smart Tests" after acquisition)',
-          'Daily collaboration with global teams across 5+ countries in English',
-        ],
-      },
-    ],
-  },
-  {
-    company: 'Cookpad Japan',
-    period: 'Nov 2012 – May 2020',
-    roles: [
-      {
-        title: 'Head of CTO Office',
-        bullets: [
-          'Drove cross-cutting initiatives for all engineers — hackathons, workplace reforms, and development culture',
-        ],
-      },
-      {
-        title: 'Head of Tech Department / Engineering General Manager',
-        bullets: [
-          'Managed the shared platform engineering division serving all product teams',
-        ],
-      },
-      {
-        title: 'Head of HR',
-        bullets: [
-          'Led all HR functions including recruiting, performance reviews, and compensation',
-          'Established hiring standards: "never lower team average"',
-        ],
-      },
-      {
-        title: 'Head of Recipe Posting',
-        bullets: [
-          'Managed the recipe posting service development team as department head',
-        ],
-      },
-      {
-        title: 'Software Engineer',
-        bullets: [
-          'Recipe posting platform development and led microservices migration',
-          'Built company-wide video streaming infrastructure',
-        ],
-      },
-    ],
-  },
-  {
-    company: 'DWANGO Co., Ltd.',
-    period: 'Mar 2009 – Oct 2012',
-    roles: [
-      {
-        title: 'Engineer / System Leader',
-        bullets: [
-          'Built internal mobile revenue and expense aggregation system',
-          'Developed Niconico Seiga (e-book platform)',
-        ],
-      },
-    ],
-  },
-  {
-    company: 'Growth Xpartners Inc.',
-    period: 'Feb 2008 – Mar 2009',
-    roles: [
-      {
-        title: 'Software Engineer',
-        bullets: [
-          'Performance tuning for municipal regional services',
-          'Developed in-store visualization service',
-        ],
-      },
-    ],
-  },
-  {
-    company: 'BrainPad Inc.',
-    period: 'Feb 2006 – Feb 2008',
-    roles: [
-      {
-        title: 'Software Engineer',
-        bullets: [
-          'Developed recommendation engine product "Rtoaster"',
-        ],
-      },
-    ],
-  },
-  {
-    company: 'KBMJ, Inc.',
-    period: 'Dec 2003 – Jan 2006',
-    roles: [
-      {
-        title: 'Web Engineer',
-        bullets: [
-          'Built blog/RSS Japanese keyword tagging application',
-          'Developed job-hunting support site using Google Maps API and Ajax',
-          'Web application development for job listing platforms',
-        ],
-      },
-    ],
-  },
-  {
-    company: 'Zentech Technology Japan, Inc.',
-    period: 'Aug 2001 – Dec 2003',
-    roles: [
-      {
-        title: 'Software Engineer',
-        bullets: [
-          'DoCoMo mobile phone emulator development',
-          'Built disaster prevention information system prototype for Hokkaido government',
-        ],
-      },
-      {
-        title: 'QA Engineer',
-        bullets: [
-          'DoCoMo mobile phone quality assurance',
-          'Java VM quality assurance',
-        ],
-      },
-    ],
-  },
-];
 
 const skills = ['Java', 'Ruby', 'Python', 'Spring Boot', 'Ruby on Rails', 'AWS', 'Docker', 'Kubernetes', 'Bazel', 'CI/CD'];
 ---
@@ -186,7 +46,7 @@ const skills = ['Java', 'Ruby', 'Python', 'Spring Boot', 'Ruby on Rails', 'AWS',
       </p>
       <nav class="flex flex-wrap gap-2 animate-[fadeUp_0.5s_0.3s_ease_both]">
         {site.links.map(l => (
-          <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={l.href} target="_blank" rel="noopener">{l.label}</a>
+          <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
         ))}
         <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={`mailto:${site.email}`}>Email</a>
       </nav>
@@ -227,7 +87,7 @@ const skills = ['Java', 'Ruby', 'Python', 'Spring Boot', 'Ruby on Rails', 'AWS',
       <SectionHeader num="04" title="Publications" />
       <div class="flex flex-col">
         {publications.map((pub, i) => (
-          <a href={pub.url} target="_blank" rel="noopener" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
+          <a href={pub.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
             <span class="font-mono text-[11px] text-accent min-w-[48px]">{pub.year}</span>
             <span class="flex flex-col gap-0.5">
               <span class="text-[13px] text-text">{pub.title}</span>
