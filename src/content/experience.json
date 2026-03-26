@@ -2,6 +2,7 @@
   {
     "company": "CloudBees Inc.",
     "period": "Jul 2024 – Present",
+    "skills": ["Java", "Python", "TypeScript", "AI/ML", "AWS", "GCP", "Docker", "Kubernetes", "CI/CD"],
     "roles": [
       {
         "title": "Engineering Director",
@@ -16,6 +17,7 @@
   {
     "company": "Launchable Inc.",
     "period": "May 2020 – Aug 2024",
+    "skills": ["Java", "Python", "TypeScript", "AI/ML", "AWS", "GCP", "Docker", "Kubernetes", "CI/CD"],
     "roles": [
       {
         "title": "Principal Software Engineer",
@@ -30,6 +32,7 @@
   {
     "company": "Cookpad Japan",
     "period": "Nov 2012 – May 2020",
+    "skills": ["Ruby", "Ruby on Rails", "AWS", "Docker", "CI/CD"],
     "roles": [
       {
         "title": "Head of CTO Office",
@@ -68,6 +71,7 @@
   {
     "company": "DWANGO Co., Ltd.",
     "period": "Mar 2009 – Oct 2012",
+    "skills": ["Java", "Objective-C"],
     "roles": [
       {
         "title": "Engineer / System Leader",
@@ -81,6 +85,7 @@
   {
     "company": "Growth Xpartners Inc.",
     "period": "Feb 2008 – Mar 2009",
+    "skills": ["Java"],
     "roles": [
       {
         "title": "Software Engineer",
@@ -94,6 +99,7 @@
   {
     "company": "BrainPad Inc.",
     "period": "Feb 2006 – Feb 2008",
+    "skills": ["Java", "Perl"],
     "roles": [
       {
         "title": "Software Engineer",
@@ -106,6 +112,7 @@
   {
     "company": "KBMJ, Inc.",
     "period": "Dec 2003 – Jan 2006",
+    "skills": ["Java"],
     "roles": [
       {
         "title": "Web Engineer",
@@ -120,6 +127,7 @@
   {
     "company": "Zentech Technology Japan, Inc.",
     "period": "Aug 2001 – Dec 2003",
+    "skills": ["Java", "C"],
     "roles": [
       {
         "title": "Software Engineer",

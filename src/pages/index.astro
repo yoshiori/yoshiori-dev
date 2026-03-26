@@ -10,7 +10,14 @@ import ExperienceItem from '../components/ExperienceItem.astro';
 import TalkMarquee from '../components/TalkMarquee.tsx';
 import SectionHeader from '../components/SectionHeader.astro';
 
-const skills = ['Java', 'Ruby', 'Python', 'Rust', 'TypeScript', 'Ruby on Rails', 'AI/ML', 'AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Engineering Management'];
+// Aggregate skills from experience data with company count
+const skillCount = new Map<string, number>();
+for (const exp of experience) {
+  for (const skill of exp.skills ?? []) {
+    skillCount.set(skill, (skillCount.get(skill) ?? 0) + 1);
+  }
+}
+const skills = [...skillCount.entries()].sort((a, b) => b[1] - a[1]);
 ---
 
 <!doctype html>
@@ -64,7 +71,7 @@ const skills = ['Java', 'Ruby', 'Python', 'Rust', 'TypeScript', 'Ruby on Rails',
       <SectionHeader num="01" title="Experience" />
       <div>
         {experience.map(exp => (
-          <ExperienceItem company={exp.company} period={exp.period} roles={exp.roles} />
+          <ExperienceItem company={exp.company} period={exp.period} roles={exp.roles} skills={exp.skills} />
         ))}
       </div>
     </section>
@@ -73,8 +80,8 @@ const skills = ['Java', 'Ruby', 'Python', 'Rust', 'TypeScript', 'Ruby on Rails',
     <section class="border-b border-border py-[72px]" id="skills">
       <SectionHeader num="02" title="Skills" />
       <div class="flex flex-wrap gap-2">
-        {skills.map(s => (
-          <span class="font-mono text-xs text-muted border border-border px-3 py-1 tracking-wider transition-all duration-200 hover:text-text hover:border-border-hover">{s}</span>
+        {skills.map(([name]) => (
+          <span class="font-mono text-xs text-muted border border-border px-3 py-1 tracking-wider transition-all duration-200 hover:text-text hover:border-border-hover">{name}</span>
         ))}
       </div>
     </section>
