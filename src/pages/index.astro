@@ -9,6 +9,7 @@ import experience from '../content/experience.json';
 import ExperienceItem from '../components/ExperienceItem.astro';
 import TalkMarquee from '../components/TalkMarquee.tsx';
 import SectionHeader from '../components/SectionHeader.astro';
+import { Icon } from 'astro-icon/components';
 
 // Aggregate skills from experience data
 function aggregate(key: 'skills' | 'leadership') {
@@ -62,9 +63,15 @@ const leadership = aggregate('leadership');
           </p>
           <nav class="flex flex-wrap gap-2 animate-[fadeUp_0.5s_0.3s_ease_both]">
             {site.links.map(l => (
-              <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
+              <a class="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={l.href} target="_blank" rel="noopener noreferrer">
+                <Icon name={l.icon} class="size-3.5" />
+                {l.label}
+              </a>
             ))}
-            <a class="font-mono text-[11px] uppercase tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={`mailto:${site.email}`}>Email</a>
+            <a class="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-widest text-muted no-underline border border-border px-3.5 py-1.5 transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/[0.04]" href={`mailto:${site.email}`}>
+              <Icon name="lucide:mail" class="size-3.5" />
+              Email
+            </a>
           </nav>
         </div>
       </div>

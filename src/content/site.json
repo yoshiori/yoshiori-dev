@@ -14,9 +14,9 @@
     "Speaker, author, and community organizer."
   ],
   "links": [
-    { "label": "GitHub",       "href": "https://github.com/yoshiori" },
-    { "label": "Speaker Deck", "href": "https://speakerdeck.com/yoshiori" },
-    { "label": "Blog",         "href": "https://yoshiori.hatenablog.com" },
-    { "label": "LinkedIn",     "href": "https://linkedin.com/in/yoshiori" }
+    { "label": "GitHub",       "href": "https://github.com/yoshiori",       "icon": "simple-icons:github" },
+    { "label": "Speaker Deck", "href": "https://speakerdeck.com/yoshiori",  "icon": "simple-icons:speakerdeck" },
+    { "label": "Blog",         "href": "https://yoshiori.hatenablog.com",   "icon": "lucide:pen-line" },
+    { "label": "LinkedIn",     "href": "https://linkedin.com/in/yoshiori",  "icon": "simple-icons:linkedin" }
   ]
 }
