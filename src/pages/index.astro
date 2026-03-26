@@ -42,6 +42,22 @@ const leadership = aggregate('leadership');
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": site.name,
+    "jobTitle": site.title,
+    "url": site.siteUrl,
+    "image": `${site.siteUrl}/og-image.png`,
+    "email": site.email,
+    "description": site.shortDescription,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tokyo",
+      "addressCountry": "JP"
+    },
+    "sameAs": site.links.map(l => l.href)
+  })} />
 </head>
 <body>
   <div class="mx-auto max-w-[860px] px-6">
