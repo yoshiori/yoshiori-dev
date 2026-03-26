@@ -49,7 +49,7 @@ const leadership = aggregate('leadership');
     "jobTitle": site.title,
     "url": site.siteUrl,
     "image": `${site.siteUrl}/og-image.png`,
-    "email": `mailto:${site.email}`,
+    "email": site.email,
     "description": site.shortDescription,
     "address": {
       "@type": "PostalAddress",
