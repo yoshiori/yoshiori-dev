@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^5.0.1",
+    "@astrojs/sitemap": "^3.7.1",
     "@iconify-json/lucide": "^1.2.98",
     "@iconify-json/simple-icons": "^1.2.75",
     "@tailwindcss/vite": "^4.2.2",
