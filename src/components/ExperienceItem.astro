@@ -9,9 +9,10 @@ interface Props {
   period: string;
   roles: Role[];
   skills?: string[];
+  leadership?: string[];
 }
 
-const { company, period, roles, skills = [] } = Astro.props;
+const { company, period, roles, skills = [], leadership = [] } = Astro.props;
 ---
 
 <div class="border-t border-border py-7 first:border-t-0">
@@ -31,10 +32,13 @@ const { company, period, roles, skills = [] } = Astro.props;
           </ul>
         </div>
       ))}
-      {skills.length > 0 && (
+      {(skills.length > 0 || leadership.length > 0) && (
         <div class="flex flex-wrap gap-1.5 pt-1">
           {skills.map(s => (
             <span class="font-mono text-[10px] text-muted border border-border px-2 py-0.5 tracking-wider">{s}</span>
+          ))}
+          {leadership.map(s => (
+            <span class="font-mono text-[10px] text-accent/70 border border-accent/30 px-2 py-0.5 tracking-wider">{s}</span>
           ))}
         </div>
       )}
