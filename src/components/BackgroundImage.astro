@@ -1,0 +1,12 @@
+---
+interface Props {
+  src: string;
+}
+const { src } = Astro.props;
+---
+<img
+  src={src}
+  alt=""
+  aria-hidden="true"
+  class="pointer-events-none absolute right-[-5%] inset-y-0 h-full opacity-[0.15] grayscale object-cover"
+/>
