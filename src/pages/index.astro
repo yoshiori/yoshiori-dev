@@ -6,6 +6,7 @@ import awards from '../content/awards.json';
 import publications from '../content/publications.json';
 import media from '../content/media.json';
 import experience from '../content/experience.json';
+import BackgroundImage from '../components/BackgroundImage.astro';
 import ExperienceItem from '../components/ExperienceItem.astro';
 import TalkMarquee from '../components/TalkMarquee.tsx';
 import SectionHeader from '../components/SectionHeader.astro';
@@ -69,7 +70,7 @@ const leadership = aggregate('leadership');
         <span class="h-px flex-1 bg-accent opacity-30"></span>
       </div>
       <div class="relative overflow-hidden">
-        <img src="/avatar.png" alt="" aria-hidden="true" class="pointer-events-none absolute right-[-5%] inset-y-0 h-full opacity-[0.15] grayscale object-cover" />
+        <BackgroundImage src="/avatar.png" />
         <div class="relative">
           <h1 class="font-display text-[clamp(72px,12vw,130px)] leading-[0.9] tracking-[0.02em] text-text mb-8 animate-[fadeUp_0.5s_0.1s_ease_both]">
             {site.firstName}<br /><span class="text-accent">{site.lastName}</span>
@@ -124,26 +125,29 @@ const leadership = aggregate('leadership');
       </div>
     </section>
 
-    <!-- Talks -->
-    <section class="border-b border-border py-[72px]" id="talks">
-      <SectionHeader num="03" title="Talks" />
-      <TalkMarquee talks={talks} client:visible />
-    </section>
-
     <!-- Publications -->
     <section class="border-b border-border py-[72px]" id="publications">
-      <SectionHeader num="04" title="Publications" />
-      <div class="flex flex-col">
-        {publications.map((pub, i) => (
-          <a href={pub.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
-            <span class="font-mono text-[11px] text-accent min-w-[48px]">{pub.year}</span>
-            <span class="flex flex-col gap-0.5">
-              <span class="text-[13px] text-text">{pub.title}</span>
-              <span class="text-[11px] text-muted">{pub.publisher} · {pub.role}</span>
-            </span>
-          </a>
-        ))}
+      <SectionHeader num="03" title="Publications" />
+      <div class="relative overflow-hidden">
+        <BackgroundImage src="/github-avatar.png" />
+        <div class="relative flex flex-col">
+          {publications.map((pub, i) => (
+            <a href={pub.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
+              <span class="font-mono text-[11px] text-accent min-w-[48px]">{pub.year}</span>
+              <span class="flex flex-col gap-0.5">
+                <span class="text-[13px] text-text">{pub.title}</span>
+                <span class="text-[11px] text-muted">{pub.publisher} · {pub.role}</span>
+              </span>
+            </a>
+          ))}
+        </div>
       </div>
+    </section>
+
+    <!-- Talks -->
+    <section class="border-b border-border py-[72px]" id="talks">
+      <SectionHeader num="04" title="Talks" />
+      <TalkMarquee talks={talks} client:visible />
     </section>
 
     <!-- Media -->
