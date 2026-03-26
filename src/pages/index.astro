@@ -124,26 +124,29 @@ const leadership = aggregate('leadership');
       </div>
     </section>
 
-    <!-- Talks -->
-    <section class="border-b border-border py-[72px]" id="talks">
-      <SectionHeader num="03" title="Talks" />
-      <TalkMarquee talks={talks} client:visible />
-    </section>
-
     <!-- Publications -->
     <section class="border-b border-border py-[72px]" id="publications">
-      <SectionHeader num="04" title="Publications" />
-      <div class="flex flex-col">
-        {publications.map((pub, i) => (
-          <a href={pub.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
-            <span class="font-mono text-[11px] text-accent min-w-[48px]">{pub.year}</span>
-            <span class="flex flex-col gap-0.5">
-              <span class="text-[13px] text-text">{pub.title}</span>
-              <span class="text-[11px] text-muted">{pub.publisher} · {pub.role}</span>
-            </span>
-          </a>
-        ))}
+      <SectionHeader num="03" title="Publications" />
+      <div class="relative overflow-hidden">
+        <img src="/github-avatar.png" alt="" aria-hidden="true" class="pointer-events-none absolute right-[-5%] inset-y-0 h-full opacity-[0.15] grayscale object-cover" />
+        <div class="relative flex flex-col">
+          {publications.map((pub, i) => (
+            <a href={pub.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
+              <span class="font-mono text-[11px] text-accent min-w-[48px]">{pub.year}</span>
+              <span class="flex flex-col gap-0.5">
+                <span class="text-[13px] text-text">{pub.title}</span>
+                <span class="text-[11px] text-muted">{pub.publisher} · {pub.role}</span>
+              </span>
+            </a>
+          ))}
+        </div>
       </div>
+    </section>
+
+    <!-- Talks -->
+    <section class="border-b border-border py-[72px]" id="talks">
+      <SectionHeader num="04" title="Talks" />
+      <TalkMarquee talks={talks} client:visible />
     </section>
 
     <!-- Media -->
