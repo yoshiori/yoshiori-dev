@@ -62,7 +62,7 @@
         ]
       },
       {
-        "title": "Software Engineer",
+        "title": "Staff Software Engineer",
         "bullets": [
           "Recipe posting platform development and led microservices migration",
           "Built company-wide video streaming infrastructure"
@@ -77,7 +77,7 @@
     "leadership": ["Engineering Management", "Tech Lead"],
     "roles": [
       {
-        "title": "Engineer / System Leader",
+        "title": "Staff Software Engineer",
         "bullets": [
           "Built internal mobile revenue and expense aggregation system",
           "Developed Niconico Seiga (e-book platform)"
@@ -91,7 +91,7 @@
     "skills": ["Java"],
     "roles": [
       {
-        "title": "Software Engineer",
+        "title": "Senior Software Engineer",
         "bullets": [
           "Performance tuning for municipal regional services",
           "Developed in-store visualization service"
@@ -105,7 +105,7 @@
     "skills": ["Java", "Perl"],
     "roles": [
       {
-        "title": "Software Engineer",
+        "title": "Senior Software Engineer",
         "bullets": [
           "Developed recommendation engine product \"Rtoaster\""
         ]
@@ -118,7 +118,7 @@
     "skills": ["Java"],
     "roles": [
       {
-        "title": "Web Engineer",
+        "title": "Senior Software Engineer",
         "bullets": [
           "Built blog/RSS Japanese keyword tagging application",
           "Developed job-hunting support site using Google Maps API and Ajax",
