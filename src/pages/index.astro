@@ -171,10 +171,17 @@ const leadership = aggregate('leadership');
       <SectionHeader num="06" title="Recognition" />
       <div class="flex flex-col">
         {awards.map((award, i) => (
-          <div class:list={["flex items-baseline gap-5 py-4", i > 0 && "border-t border-border"]}>
-            <span class="font-mono text-[11px] text-accent min-w-[48px]">{award.year}</span>
-            <span class="text-[13px] text-dim">{award.text}</span>
-          </div>
+          award.url ? (
+            <a href={award.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
+              <span class="font-mono text-[11px] text-accent min-w-[48px]">{award.year}</span>
+              <span class="text-[13px] text-dim">{award.text}</span>
+            </a>
+          ) : (
+            <div class:list={["flex items-baseline gap-5 py-4", i > 0 && "border-t border-border"]}>
+              <span class="font-mono text-[11px] text-accent min-w-[48px]">{award.year}</span>
+              <span class="text-[13px] text-dim">{award.text}</span>
+            </div>
+          )
         ))}
       </div>
     </section>
