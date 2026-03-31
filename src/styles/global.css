@@ -46,6 +46,44 @@ body::before {
   opacity: 0.4;
 }
 
+/* Accent glow effects */
+.glow-text {
+  text-shadow: 0 0 30px rgba(232, 255, 0, 0.3);
+}
+
+.glow-border-hover {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.glow-border-hover:hover {
+  box-shadow: 0 0 12px rgba(232, 255, 0, 0.1);
+}
+
+/* Gradient section divider */
+.divider-gradient {
+  border-bottom: none;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    rgba(232, 255, 0, 0.15) 50%,
+    transparent
+  );
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+/* Hero ambient glow */
+.hero-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(232, 255, 0, 0.06) 0%, transparent 70%);
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
 /* Fade-up animation */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }

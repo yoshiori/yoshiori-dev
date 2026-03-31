@@ -9,6 +9,8 @@ import experience from '../content/experience.json';
 import BackgroundImage from '../components/BackgroundImage.astro';
 import ExperienceItem from '../components/ExperienceItem.astro';
 import TalkMarquee from '../components/TalkMarquee.tsx';
+import ScrollReveal from '../components/ScrollReveal.tsx';
+import StaggeredTags from '../components/StaggeredTags.tsx';
 import SectionHeader from '../components/SectionHeader.astro';
 import { Icon } from 'astro-icon/components';
 
@@ -64,16 +66,17 @@ const leadership = aggregate('leadership');
   <div class="mx-auto max-w-[860px] px-6">
 
     <!-- Hero -->
-    <header class="border-b border-border pb-20 pt-[100px]">
+    <header class="divider-gradient pb-20 pt-[100px]">
       <div class="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-accent animate-[fadeUp_0.5s_ease_both]">
         {site.title} · {site.location}
         <span class="h-px flex-1 bg-accent opacity-30"></span>
       </div>
       <div class="relative overflow-hidden">
         <BackgroundImage src="/avatar.png" />
+        <div class="hero-glow"></div>
         <div class="relative">
           <h1 class="font-display text-[clamp(72px,12vw,130px)] leading-[0.9] tracking-[0.02em] text-text mb-8 animate-[fadeUp_0.5s_0.1s_ease_both]">
-            {site.firstName}<br /><span class="text-accent">{site.lastName}</span>
+            {site.firstName}<br /><span class="text-accent glow-text">{site.lastName}</span>
           </h1>
           <p class="max-w-[520px] text-sm text-soft mb-10 animate-[fadeUp_0.5s_0.2s_ease_both]">
             {site.description}
@@ -95,95 +98,99 @@ const leadership = aggregate('leadership');
     </header>
 
     <!-- Experience -->
-    <section class="border-b border-border py-[72px]" id="experience">
-      <SectionHeader num="01" title="Experience" />
-      <div>
-        {experience.map(exp => (
-          <ExperienceItem company={exp.company} period={exp.period} roles={exp.roles} skills={exp.skills} leadership={exp.leadership} />
-        ))}
-      </div>
+    <section class="divider-gradient py-[72px]" id="experience">
+      <ScrollReveal client:visible>
+        <SectionHeader num="01" title="Experience" />
+        <div>
+          {experience.map(exp => (
+            <ExperienceItem company={exp.company} period={exp.period} roles={exp.roles} skills={exp.skills} leadership={exp.leadership} />
+          ))}
+        </div>
+      </ScrollReveal>
     </section>
 
     <!-- Skills -->
-    <section class="border-b border-border py-[72px]" id="skills">
-      <SectionHeader num="02" title="Skills" />
-      <div class="mb-4">
-        <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted mb-3">Technical</div>
-        <div class="flex flex-wrap gap-2">
-          {skills.map(name => (
-            <span class="font-mono text-xs text-muted border border-border px-3 py-1 tracking-wider transition-all duration-200 hover:text-text hover:border-border-hover">{name}</span>
-          ))}
+    <section class="divider-gradient py-[72px]" id="skills">
+      <ScrollReveal client:visible>
+        <SectionHeader num="02" title="Skills" />
+        <div class="mb-4">
+          <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted mb-3">Technical</div>
+          <StaggeredTags tags={skills} client:visible />
         </div>
-      </div>
-      <div>
-        <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted mb-3">Management</div>
-        <div class="flex flex-wrap gap-2">
-          {leadership.map(name => (
-            <span class="font-mono text-xs text-accent/70 border border-accent/30 px-3 py-1 tracking-wider transition-all duration-200 hover:text-accent hover:border-accent">{name}</span>
-          ))}
+        <div>
+          <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted mb-3">Management</div>
+          <StaggeredTags tags={leadership} variant="accent" client:visible />
         </div>
-      </div>
+      </ScrollReveal>
     </section>
 
     <!-- Publications -->
-    <section class="border-b border-border py-[72px]" id="publications">
-      <SectionHeader num="03" title="Publications" />
-      <div class="relative overflow-hidden">
-        <BackgroundImage src="/github-avatar.png" />
-        <div class="relative flex flex-col">
-          {publications.map((pub, i) => (
-            <a href={pub.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
-              <span class="font-mono text-[11px] text-accent min-w-[48px]">{pub.year}</span>
+    <section class="divider-gradient py-[72px]" id="publications">
+      <ScrollReveal client:visible>
+        <SectionHeader num="03" title="Publications" />
+        <div class="relative overflow-hidden">
+          <BackgroundImage src="/github-avatar.png" />
+          <div class="relative flex flex-col">
+            {publications.map((pub, i) => (
+              <a href={pub.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
+                <span class="font-mono text-[11px] text-accent min-w-[48px]">{pub.year}</span>
+                <span class="flex flex-col gap-0.5">
+                  <span class="text-[13px] text-text">{pub.title}</span>
+                  <span class="text-[11px] text-muted">{pub.publisher} · {pub.role}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </ScrollReveal>
+    </section>
+
+    <!-- Talks -->
+    <section class="divider-gradient py-[72px]" id="talks">
+      <ScrollReveal client:visible>
+        <SectionHeader num="04" title="Talks" />
+        <TalkMarquee talks={talks} client:visible />
+      </ScrollReveal>
+    </section>
+
+    <!-- Media -->
+    <section class="divider-gradient py-[72px]" id="media">
+      <ScrollReveal client:visible>
+        <SectionHeader num="05" title="Media" />
+        <div class="flex flex-col">
+          {media.map((item, i) => (
+            <a href={item.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
+              <span class="font-mono text-[11px] text-accent min-w-[48px]">{item.year}</span>
               <span class="flex flex-col gap-0.5">
-                <span class="text-[13px] text-text">{pub.title}</span>
-                <span class="text-[11px] text-muted">{pub.publisher} · {pub.role}</span>
+                <span class="text-[13px] text-text">{item.title}</span>
+                <span class="text-[11px] text-muted">{item.publisher}</span>
               </span>
             </a>
           ))}
         </div>
-      </div>
-    </section>
-
-    <!-- Talks -->
-    <section class="border-b border-border py-[72px]" id="talks">
-      <SectionHeader num="04" title="Talks" />
-      <TalkMarquee talks={talks} client:visible />
-    </section>
-
-    <!-- Media -->
-    <section class="border-b border-border py-[72px]" id="media">
-      <SectionHeader num="05" title="Media" />
-      <div class="flex flex-col">
-        {media.map((item, i) => (
-          <a href={item.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
-            <span class="font-mono text-[11px] text-accent min-w-[48px]">{item.year}</span>
-            <span class="flex flex-col gap-0.5">
-              <span class="text-[13px] text-text">{item.title}</span>
-              <span class="text-[11px] text-muted">{item.publisher}</span>
-            </span>
-          </a>
-        ))}
-      </div>
+      </ScrollReveal>
     </section>
 
     <!-- Recognition -->
-    <section class="border-b border-border py-[72px]" id="recognition">
-      <SectionHeader num="06" title="Recognition" />
-      <div class="flex flex-col">
-        {awards.map((award, i) => (
-          award.url ? (
-            <a href={award.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
-              <span class="font-mono text-[11px] text-accent min-w-[48px]">{award.year}</span>
-              <span class="text-[13px] text-dim">{award.text}</span>
-            </a>
-          ) : (
-            <div class:list={["flex items-baseline gap-5 py-4", i > 0 && "border-t border-border"]}>
-              <span class="font-mono text-[11px] text-accent min-w-[48px]">{award.year}</span>
-              <span class="text-[13px] text-dim">{award.text}</span>
-            </div>
-          )
-        ))}
-      </div>
+    <section class="divider-gradient py-[72px]" id="recognition">
+      <ScrollReveal client:visible>
+        <SectionHeader num="06" title="Recognition" />
+        <div class="flex flex-col">
+          {awards.map((award, i) => (
+            award.url ? (
+              <a href={award.url} target="_blank" rel="noopener noreferrer" class:list={["flex items-baseline gap-5 py-4 no-underline transition-colors duration-200 hover:bg-accent/[0.04]", i > 0 && "border-t border-border"]}>
+                <span class="font-mono text-[11px] text-accent min-w-[48px]">{award.year}</span>
+                <span class="text-[13px] text-dim">{award.text}</span>
+              </a>
+            ) : (
+              <div class:list={["flex items-baseline gap-5 py-4", i > 0 && "border-t border-border"]}>
+                <span class="font-mono text-[11px] text-accent min-w-[48px]">{award.year}</span>
+                <span class="text-[13px] text-dim">{award.text}</span>
+              </div>
+            )
+          ))}
+        </div>
+      </ScrollReveal>
     </section>
 
     <footer class="flex flex-col items-center gap-2 py-12 text-center sm:flex-row sm:justify-between sm:text-left">
