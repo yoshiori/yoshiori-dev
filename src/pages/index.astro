@@ -10,6 +10,7 @@ import BackgroundImage from '../components/BackgroundImage.astro';
 import ExperienceItem from '../components/ExperienceItem.astro';
 import TalkMarquee from '../components/TalkMarquee.tsx';
 import ScrollReveal from '../components/ScrollReveal.tsx';
+import StaggeredTags from '../components/StaggeredTags.tsx';
 import SectionHeader from '../components/SectionHeader.astro';
 import { Icon } from 'astro-icon/components';
 
@@ -114,19 +115,11 @@ const leadership = aggregate('leadership');
         <SectionHeader num="02" title="Skills" />
         <div class="mb-4">
           <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted mb-3">Technical</div>
-          <div class="flex flex-wrap gap-2">
-            {skills.map(name => (
-              <span class="font-mono text-xs text-muted border border-border px-3 py-1 tracking-wider transition-all duration-200 hover:text-text hover:border-border-hover">{name}</span>
-            ))}
-          </div>
+          <StaggeredTags tags={skills} client:visible />
         </div>
         <div>
           <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted mb-3">Management</div>
-          <div class="flex flex-wrap gap-2">
-            {leadership.map(name => (
-              <span class="font-mono text-xs text-accent/70 border border-accent/30 px-3 py-1 tracking-wider transition-all duration-200 hover:text-accent hover:border-accent">{name}</span>
-            ))}
-          </div>
+          <StaggeredTags tags={leadership} variant="accent" client:visible />
         </div>
       </ScrollReveal>
     </section>
