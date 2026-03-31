@@ -1,21 +1,22 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface Props {
   tags: string[];
   variant?: "default" | "accent";
 }
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.04 } },
-};
-
-const item = {
-  hidden: { opacity: 0, scale: 0.85 },
-  visible: { opacity: 1, scale: 1 },
-};
-
 export default function StaggeredTags({ tags, variant = "default" }: Props) {
+  const shouldReduceMotion = useReducedMotion();
+
+  const container = {
+    hidden: {},
+    visible: { transition: { staggerChildren: shouldReduceMotion ? 0 : 0.04 } },
+  };
+
+  const item = {
+    hidden: { opacity: 0, scale: shouldReduceMotion ? 1 : 0.85 },
+    visible: { opacity: 1, scale: 1 },
+  };
   const base =
     "font-mono text-xs border px-3 py-1 tracking-wider transition-all duration-200";
   const styles =
