@@ -64,16 +64,17 @@ const leadership = aggregate('leadership');
   <div class="mx-auto max-w-[860px] px-6">
 
     <!-- Hero -->
-    <header class="border-b border-border pb-20 pt-[100px]">
+    <header class="divider-gradient pb-20 pt-[100px]">
       <div class="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-accent animate-[fadeUp_0.5s_ease_both]">
         {site.title} · {site.location}
         <span class="h-px flex-1 bg-accent opacity-30"></span>
       </div>
       <div class="relative overflow-hidden">
         <BackgroundImage src="/avatar.png" />
+        <div class="hero-glow"></div>
         <div class="relative">
           <h1 class="font-display text-[clamp(72px,12vw,130px)] leading-[0.9] tracking-[0.02em] text-text mb-8 animate-[fadeUp_0.5s_0.1s_ease_both]">
-            {site.firstName}<br /><span class="text-accent">{site.lastName}</span>
+            {site.firstName}<br /><span class="text-accent glow-text">{site.lastName}</span>
           </h1>
           <p class="max-w-[520px] text-sm text-soft mb-10 animate-[fadeUp_0.5s_0.2s_ease_both]">
             {site.description}
@@ -95,7 +96,7 @@ const leadership = aggregate('leadership');
     </header>
 
     <!-- Experience -->
-    <section class="border-b border-border py-[72px]" id="experience">
+    <section class="divider-gradient py-[72px]" id="experience">
       <SectionHeader num="01" title="Experience" />
       <div>
         {experience.map(exp => (
@@ -105,7 +106,7 @@ const leadership = aggregate('leadership');
     </section>
 
     <!-- Skills -->
-    <section class="border-b border-border py-[72px]" id="skills">
+    <section class="divider-gradient py-[72px]" id="skills">
       <SectionHeader num="02" title="Skills" />
       <div class="mb-4">
         <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-muted mb-3">Technical</div>
@@ -126,7 +127,7 @@ const leadership = aggregate('leadership');
     </section>
 
     <!-- Publications -->
-    <section class="border-b border-border py-[72px]" id="publications">
+    <section class="divider-gradient py-[72px]" id="publications">
       <SectionHeader num="03" title="Publications" />
       <div class="relative overflow-hidden">
         <BackgroundImage src="/github-avatar.png" />
@@ -145,13 +146,13 @@ const leadership = aggregate('leadership');
     </section>
 
     <!-- Talks -->
-    <section class="border-b border-border py-[72px]" id="talks">
+    <section class="divider-gradient py-[72px]" id="talks">
       <SectionHeader num="04" title="Talks" />
       <TalkMarquee talks={talks} client:visible />
     </section>
 
     <!-- Media -->
-    <section class="border-b border-border py-[72px]" id="media">
+    <section class="divider-gradient py-[72px]" id="media">
       <SectionHeader num="05" title="Media" />
       <div class="flex flex-col">
         {media.map((item, i) => (
@@ -167,7 +168,7 @@ const leadership = aggregate('leadership');
     </section>
 
     <!-- Recognition -->
-    <section class="border-b border-border py-[72px]" id="recognition">
+    <section class="divider-gradient py-[72px]" id="recognition">
       <SectionHeader num="06" title="Recognition" />
       <div class="flex flex-col">
         {awards.map((award, i) => (
