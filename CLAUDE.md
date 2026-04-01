@@ -42,6 +42,12 @@ Dark theme, electric yellow (#e8ff00) accent.
 Bebas Neue (display) + IBM Plex Mono + IBM Plex Sans JP.
 Design tokens defined in `src/styles/global.css` via Tailwind `@theme`.
 
+## Notes
+### Anthropic Certifications (not displayed on site)
+- Claude Code in Action: https://verify.skilljar.com/c/7dpz5456aa5a
+- Introduction to agent skills: https://verify.skilljar.com/c/kdqp9r226eic
+- Introduction to subagents: https://verify.skilljar.com/c/5aqmfbegmyef
+
 ## TODO
 - Add /talks dedicated page
 - Consider adding blog post list from hatenablog
