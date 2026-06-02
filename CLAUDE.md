@@ -16,6 +16,8 @@ Yoshiori Shoji's personal resume site. Single-page static site hosted on Cloudfl
 ## Commands
 - `npm run dev` — dev server at localhost:4321
 - `npm run build` — build to dist/ (use this to verify changes; there are no tests or linter)
+- `npm run cf:preview` — serve dist/ via Workers runtime locally (requires `npm run build` first)
+- `npm run cf:deploy:dry-run` — validate wrangler.jsonc without deploying
 - `python scripts/fetch_speakerdeck.py` — fetch latest talks from SpeakerDeck RSS (also runs weekly via CI)
 - `python scripts/generate_og_image.py` — regenerate OG image (also runs automatically when `site.json` changes via CI)
 
@@ -41,6 +43,16 @@ Data-driven single-page site. All content lives in JSON files under `src/content
 Dark theme, electric yellow (#e8ff00) accent.
 Bebas Neue (display) + IBM Plex Mono + IBM Plex Sans JP.
 Design tokens defined in `src/styles/global.css` via Tailwind `@theme`.
+
+## Cloudflare migration (Pages → Workers Static Assets)
+
+Cloudflare is converging Pages into Workers (announced 2023, ongoing). Migration is staged:
+
+- **Phase 1 (done)**: `wrangler.jsonc` added, local preview via `wrangler dev`. Production still served by Pages git integration — no production change.
+- **Phase 2 (TODO)**: GitHub Actions workflow to deploy to a Workers preview environment (separate URL).
+- **Phase 3 (TODO)**: Attach `yoshiori.dev` to the Worker, disable Pages auto-deploy.
+
+`wrangler.jsonc` has no `main` (static-only, no Worker script). `compatibility_date` should be bumped when touching the Workers runtime; otherwise leave it.
 
 ## Notes
 ### Anthropic Certifications (not displayed on site)
