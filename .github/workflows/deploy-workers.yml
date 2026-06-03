@@ -1,4 +1,4 @@
-name: Deploy Workers Preview
+name: Deploy Workers
 
 on:
   push:
@@ -6,11 +6,11 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: deploy-workers-preview-${{ github.ref }}
+  group: deploy-workers-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  deploy-preview:
+  deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -34,3 +34,10 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy --env preview
+
+      - name: Deploy to Workers production
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --env production
