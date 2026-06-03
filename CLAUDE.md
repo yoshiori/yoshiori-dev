@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Yoshiori Shoji's personal resume site. Single-page static site hosted on Cloudflare Pages (yoshiori.dev).
+Yoshiori Shoji's personal resume site. Single-page static site hosted on Cloudflare Workers Static Assets (yoshiori.dev).
 
 ## Stack
 - Astro 6 (static build) + Tailwind CSS 4 (`@tailwindcss/vite`)
 - Node.js 24 (pinned via `.node-version`, local dev uses mise with `mise.toml`)
-- Hosted on Cloudflare Pages
+- Hosted on Cloudflare Workers Static Assets (custom domain `yoshiori.dev`)
 - Integrations: `@astrojs/sitemap` (sitemap.xml), `astro-icon` (Iconify: `lucide` + `simple-icons`), `@astrojs/react`
 - SpeakerDeck talks synced weekly via GitHub Actions
 
@@ -17,9 +17,10 @@ Yoshiori Shoji's personal resume site. Single-page static site hosted on Cloudfl
 - `npm run dev` — dev server at localhost:4321
 - `npm run build` — build to dist/ (use this to verify changes; there are no tests or linter)
 - `npm run cf:preview` — serve dist/ via Workers runtime locally (requires `npm run build` first)
-- `npm run cf:deploy:dry-run` — validate wrangler.jsonc without deploying
-- `npm run cf:deploy:preview:dry-run` — validate wrangler.jsonc `[env.preview]` resolution without deploying
+- `npm run cf:deploy:preview:dry-run` — validate `[env.preview]` resolution without deploying
 - `npm run cf:deploy:preview` — deploy to Workers preview env from laptop (requires `wrangler login`; CI does this automatically on push to main)
+- `npm run cf:deploy:production:dry-run` — validate top-level (production) resolution without deploying
+- `npm run cf:deploy:production` — deploy to Workers production env from laptop (requires `wrangler login`; CI does this automatically on push to main)
 - `python scripts/fetch_speakerdeck.py` — fetch latest talks from SpeakerDeck RSS (also runs weekly via CI)
 - `python scripts/generate_og_image.py` — regenerate OG image (also runs automatically when `site.json` changes via CI)
 
@@ -40,22 +41,31 @@ Data-driven single-page site. All content lives in JSON files under `src/content
 ### CI/CD Automation
 - `.github/workflows/fetch-speakerdeck.yml` — runs weekly (Sunday 00:00 UTC), auto-creates PR if talks changed
 - `.github/workflows/regenerate-og-image.yml` — triggers on `src/content/site.json` changes, auto-creates PR with new OG image
-- `.github/workflows/deploy-workers-preview.yml` — on push to `main` (and `workflow_dispatch`), builds and deploys to the Workers preview env at `yoshiori-dev-preview.<account-subdomain>.workers.dev`. Requires repo secrets `CLOUDFLARE_API_TOKEN` (Edit Cloudflare Workers template) and `CLOUDFLARE_ACCOUNT_ID`.
+- `.github/workflows/deploy-workers.yml` — on push to `main` (and `workflow_dispatch`), builds once and deploys both `[env.preview]` (→ `yoshiori-dev-preview.yoshiori.workers.dev`) and production (→ `yoshiori.dev`) sequentially. Requires repo secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. The token must include **Account › Workers Scripts › Edit**, **Zone › Workers Routes › Edit**, **Zone › Zone › Read** for `yoshiori.dev` (custom-domain binding provisions DNS via the Workers Routes API, no separate DNS:Edit needed). `CLOUDFLARE_ACCOUNT_ID` is read by Wrangler when not pinned in `wrangler.jsonc`.
 
 ## Design
 Dark theme, electric yellow (#e8ff00) accent.
 Bebas Neue (display) + IBM Plex Mono + IBM Plex Sans JP.
 Design tokens defined in `src/styles/global.css` via Tailwind `@theme`.
 
-## Cloudflare migration (Pages → Workers Static Assets)
+## Cloudflare deployment
 
-Cloudflare is converging Pages into Workers (announced 2023, ongoing). Migration is staged:
+Two environments deployed in parallel from `main`:
 
-- **Phase 1 (done)**: `wrangler.jsonc` added, local preview via `wrangler dev`. Production still served by Pages git integration — no production change.
-- **Phase 2 (done)**: `deploy-workers-preview.yml` GHA deploys to `[env.preview]` (Worker name `yoshiori-dev-preview`) on push to `main`. Lives at `yoshiori-dev-preview.<account-subdomain>.workers.dev`. Production still on Pages — no production change.
-- **Phase 3 (TODO)**: Add `[env.production]` block with `workers_dev: false`, bind `yoshiori.dev` as custom domain on the production Worker, disable Pages auto-deploy / delete Pages project.
+- **Production** (top-level, `name: yoshiori-dev`) → custom domain `yoshiori.dev`. `routes` array binds the apex via `custom_domain: true`. `workers_dev: false` keeps it off the workers.dev subdomain.
+- **`[env.preview]`** (`name: yoshiori-dev-preview`) → `yoshiori-dev-preview.yoshiori.workers.dev`. Overrides top-level with `workers_dev: true` (to expose the staging URL) and `routes: []` (to prevent inheriting the production custom domain).
 
-`wrangler.jsonc` has no `main` (static-only, no Worker script). `compatibility_date` should be bumped when touching the Workers runtime; otherwise leave it. `assets.directory` is inherited by `[env.preview]` automatically (per wrangler config-schema), so `[env.preview]` only needs `name`.
+`wrangler.jsonc` has no `main` (static-only, no Worker script). `assets.directory`, `workers_dev`, and `routes` are inherited from the top level by named environments — preview explicitly overrides `workers_dev` and `routes`. Bindings (`kv_namespaces`, `durable_objects`, `vars`, etc.) are NOT inherited and must be redeclared per env if introduced. `compatibility_date` should be bumped when touching the Workers runtime; otherwise leave it.
+
+### Migration history (Pages → Workers Static Assets)
+
+Cloudflare is converging Pages into Workers (announced 2023). Migration was staged:
+
+- **Phase 1**: `wrangler.jsonc` + local `wrangler dev` (PR #20)
+- **Phase 2**: `deploy-workers.yml` (originally `-preview.yml`) auto-deploys `[env.preview]` on push to `main` (PR #21)
+- **Phase 3**: Production env at top-level + custom domain cutover + production CI deploy. The Pages project is kept dormant as a rollback target for ~1 week post-cutover before deletion.
+
+Rollback: re-attach `yoshiori.dev` as Pages custom domain via dashboard; Pages git integration is left intact (just unbound from the custom domain) so a re-attach gets traffic flowing again.
 
 ## Notes
 ### Anthropic Certifications (not displayed on site)
