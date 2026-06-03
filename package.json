@@ -7,7 +7,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "cf:preview": "wrangler dev",
-    "cf:deploy:dry-run": "wrangler deploy --dry-run"
+    "cf:deploy:dry-run": "npm run build && wrangler deploy --dry-run",
+    "cf:deploy:preview": "npm run build && wrangler deploy --env preview",
+    "cf:deploy:preview:dry-run": "npm run build && wrangler deploy --env preview --dry-run"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.1",

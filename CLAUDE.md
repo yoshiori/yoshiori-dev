@@ -18,6 +18,8 @@ Yoshiori Shoji's personal resume site. Single-page static site hosted on Cloudfl
 - `npm run build` — build to dist/ (use this to verify changes; there are no tests or linter)
 - `npm run cf:preview` — serve dist/ via Workers runtime locally (requires `npm run build` first)
 - `npm run cf:deploy:dry-run` — validate wrangler.jsonc without deploying
+- `npm run cf:deploy:preview:dry-run` — validate wrangler.jsonc `[env.preview]` resolution without deploying
+- `npm run cf:deploy:preview` — deploy to Workers preview env from laptop (requires `wrangler login`; CI does this automatically on push to main)
 - `python scripts/fetch_speakerdeck.py` — fetch latest talks from SpeakerDeck RSS (also runs weekly via CI)
 - `python scripts/generate_og_image.py` — regenerate OG image (also runs automatically when `site.json` changes via CI)
 
@@ -38,6 +40,7 @@ Data-driven single-page site. All content lives in JSON files under `src/content
 ### CI/CD Automation
 - `.github/workflows/fetch-speakerdeck.yml` — runs weekly (Sunday 00:00 UTC), auto-creates PR if talks changed
 - `.github/workflows/regenerate-og-image.yml` — triggers on `src/content/site.json` changes, auto-creates PR with new OG image
+- `.github/workflows/deploy-workers-preview.yml` — on push to `main` (and `workflow_dispatch`), builds and deploys to the Workers preview env at `yoshiori-dev-preview.<account-subdomain>.workers.dev`. Requires repo secrets `CLOUDFLARE_API_TOKEN` (Edit Cloudflare Workers template) and `CLOUDFLARE_ACCOUNT_ID`.
 
 ## Design
 Dark theme, electric yellow (#e8ff00) accent.
@@ -49,10 +52,10 @@ Design tokens defined in `src/styles/global.css` via Tailwind `@theme`.
 Cloudflare is converging Pages into Workers (announced 2023, ongoing). Migration is staged:
 
 - **Phase 1 (done)**: `wrangler.jsonc` added, local preview via `wrangler dev`. Production still served by Pages git integration — no production change.
-- **Phase 2 (TODO)**: GitHub Actions workflow to deploy to a Workers preview environment (separate URL).
-- **Phase 3 (TODO)**: Attach `yoshiori.dev` to the Worker, disable Pages auto-deploy.
+- **Phase 2 (done)**: `deploy-workers-preview.yml` GHA deploys to `[env.preview]` (Worker name `yoshiori-dev-preview`) on push to `main`. Lives at `yoshiori-dev-preview.<account-subdomain>.workers.dev`. Production still on Pages — no production change.
+- **Phase 3 (TODO)**: Add `[env.production]` block with `workers_dev: false`, bind `yoshiori.dev` as custom domain on the production Worker, disable Pages auto-deploy / delete Pages project.
 
-`wrangler.jsonc` has no `main` (static-only, no Worker script). `compatibility_date` should be bumped when touching the Workers runtime; otherwise leave it.
+`wrangler.jsonc` has no `main` (static-only, no Worker script). `compatibility_date` should be bumped when touching the Workers runtime; otherwise leave it. `assets.directory` is inherited by `[env.preview]` automatically (per wrangler config-schema), so `[env.preview]` only needs `name`.
 
 ## Notes
 ### Anthropic Certifications (not displayed on site)
